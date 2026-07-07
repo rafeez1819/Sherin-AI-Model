@@ -10,15 +10,42 @@ This repo documents the actual architecture, the reasoning behind each design de
 
 ## What SHERIN actually is
 
-SHERIN is **not** a transformer-style foundation model. It's a hierarchical, deterministic routing and retrieval system:
+SHERIN is not a small, narrow lookup tool — it's designed as a large-scale,
+self-upgrading "star-teacher" model: a hierarchical, deterministic routing
+and retrieval system built to scale far beyond any fixed curriculum, with
+the model itself harvesting and expanding its own knowledge base over time.
 
-- A spherical mesh of **Core → Layers → Areas**, each holding pre-harvested knowledge units (KUs)
-- Tasks are decomposed and tagged with a compact **DNA-style identifier** that routes them through the mesh
-- Only **KU-ID references** move through the reasoning pipeline — never raw content — until final assembly
-- A local **KuLexicon engine** resolves KU-IDs to language on the user's own device
-- The knowledge base **grows its own capacity** (new Areas, new Layers) as data fills existing structure, without manual redesign
+- A spherical mesh of Core → Layers → Areas, each holding harvested
+  knowledge units (KUs) — designed to grow without limit as harvesting
+  continues, not a fixed or small dataset
+- Tasks are decomposed and tagged with a compact DNA-style identifier
+  that routes them through the mesh
+- Only KU-ID references move through the reasoning pipeline — never raw
+  content — until final assembly, kept to low-bit representations to hold
+  micro-latency even on heavy, complex tasks
+- A local KuLexicon engine resolves KU-IDs into language
+- The knowledge base grows its own capacity (new Areas, new Layers) as
+  data fills existing structure — self-harvesting and self-upgrading
+  without manual redesign
+- One model, one user: no per-user model variants — a single model
+  architecture serves each user's full range of tasks
 
-If you're picturing GPT-style generalization to arbitrary novel queries, that's the wrong mental model. SHERIN's real strength is a domain it has actually harvested: near-instant, fully offline, privacy-preserving retrieval and composition. Outside a harvested domain, it has nothing to route to — this is a known, structural limitation, not a bug to be patched later.
+> **Deployment model — [confirm before publishing]:** the current docs
+> describe an edge-native, fully offline design (model runs on-device,
+> no server dependency). Recent direction describes the model running
+> from a server, with only low-bit KU-ID data sent to the client. These
+> are two different architectures and the repo should state clearly
+> which is accurate — e.g. "harvesting and self-upgrade run centrally;
+> per-user inference runs [on-device from a synced shard / server-side
+> with low-bit client payload]." Update this note once decided.
+
+SHERIN's long-term direction is toward self-decision-making and
+emotional awareness, operated through Cognitor — a video/voice-driven
+interface intended to let a user run the system hands-free, without
+manual/physical interaction. Cognitor's exact relationship to the
+Core/Layer/Area mesh (interface layer vs. independent subsystem) is
+still being defined — see `docs/VISION.md` [pending] for the roadmap
+framing of this direction, kept separate from what's implemented today.
 
 ---
 
