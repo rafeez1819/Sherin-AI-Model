@@ -30,9 +30,7 @@ the model itself harvesting and expanding its own knowledge base over time.
 - One model, one user: no per-user model variants — a single model
   architecture serves each user's full range of tasks
 
-> **Deployment model — [confirm before publishing]:** the current docs
-> describe an edge-native, fully offline design (model runs on-device,
-> no server dependency). Recent direction describes the model running
+> **Deployment model — **The Huge Giant Teacher model will run 
 > from a server, with only low-bit KU-ID data sent to the client. These
 > are two different architectures and the repo should state clearly
 > which is accurate — e.g. "harvesting and self-upgrade run centrally;
