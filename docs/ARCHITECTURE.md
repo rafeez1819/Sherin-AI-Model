@@ -10,7 +10,7 @@ This is not a neural network in the transformer sense. It's a **deterministic hi
                     Core (Level 1)
                        |
         ┌──────────────┼──────────────┐
-        |               |               |
+        |              |              |
     Safety Bot      Planning Bot   Execution Bot   ← Layer 1 (3 bots)
         |               |               |
    [3 sub-bots]    [3 sub-bots]    [3 sub-bots]    ← Layer 2 (9 bots total)
